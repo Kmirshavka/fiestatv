@@ -1,0 +1,36 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div id="box" class="register">
+    <div id="header" class="headerRegister">
+        <h6 class="purpure"> </h6>
+        <h1>Registration</h1>
+    </div>
+    <div id="contentbar" class="register">
+        <div id="content">
+            <div id="block" class="registerform">
+                <div id="cell"><div class="cell"> 
+<form id="register" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+    <!-- { form_widget(form) }} -->
+    <h6>Fill registration information below:</h6>
+
+    {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'maxlength': '16', 'pattern': '.{2,}', 'placeholder': 'USERNAME'|trans } }) }}
+    {{ form_errors(form.username) }}
+
+    {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'E-MAIL'|trans } }) }}
+    {{ form_errors(form.email) }}
+<br>
+    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'PASSWORD'|trans } }) }}
+    {{ form_errors(form.plainPassword.first) }}
+
+    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'REPEAT RASSWORD'|trans } }) }}
+    {{ form_errors(form.plainPassword.second) }}
+
+    {{ form_rest(form) }}
+    <h6> </h6>
+    <button type="submit" id="button-form" class="register">REGISTER</button>
+</form>
+                    </div></div>
+            </div>
+        </div>
+    </div>
+</div>

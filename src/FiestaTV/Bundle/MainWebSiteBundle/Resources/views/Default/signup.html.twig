@@ -1,0 +1,35 @@
+{% extends "FiestaTVMainWebSiteBundle::layout.html.twig" %}
+{% block content %}
+    <div id="box" class="register">
+        <div id="header" class="headerRegister">
+            <h6 class="purpure"> </h6>
+            <h1>Registration</h1>
+        </div>
+        <div id="contentbar" class="register">
+            <div id="content">
+                <div id="block" class="registerform">
+                    <div id="cell"><div class="cell"> 
+                <form id="register" action="/filmweb/web/app_dev.php/register/"  method="POST" class="fos_user_registration_register">
+
+                    <h6>Fill registration information below:</h6>
+                    <input type="text" id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="255" pattern=".{2,}" placeholder="LOGIN">
+                    <input type="email" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required" placeholder="E-MAIL">
+                    <br>
+                    <input type="password" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" placeholder="PASSWORD">
+                    <input type="password" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" placeholder="Repeat RASSWORD">
+                    <h6>Put information about you, in fields below:</h6>
+                    <input type="text" id="fos_user_registration_form_name" name="fos_user_registration_form[name]" required="required" placeholder="NAME">
+                    <input type="text" id="fos_user_registration_form_surname" name="fos_user_registration_form[surname]" required="required" placeholder="SURNAME">
+                    <br>
+                    <input type="text" id="fos_user_registration_form_phone_number" name="fos_user_registration_form[phone_number]" required="required" placeholder="PHONE NO.">
+                    <input type="hidden" id="fos_user_registration_form__token" name="fos_user_registration_form[_token]" value="bHwU_oWoq9eYb5jWAxJZxikVL3gGa_qCsmNmBS9H65U">
+
+                    <h6> </h6>
+                    <button type="submit" id="button-form" class="register">REGISTER</button>
+                </form>
+                    </div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

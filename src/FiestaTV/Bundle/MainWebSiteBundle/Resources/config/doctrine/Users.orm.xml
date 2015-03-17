@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="FiestaTV\Bundle\MainWebSiteBundle\Entity\Users" table="users">
+    <unique-constraints>
+      <unique-constraint name="user_id_UNIQUE" columns="user_id"/>
+    </unique-constraints>
+    <id name="userId" type="string" column="user_id" length="16">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="userPassword" type="string" column="user_password" length="16" nullable="false"/>
+    <field name="userEmail" type="string" column="user_email" length="32" nullable="true"/>
+    <field name="userName" type="string" column="user_name" length="32" nullable="true"/>
+    <field name="userSurname" type="string" column="user_surname" length="32" nullable="true"/>
+    <field name="userPhone" type="string" column="user_phone" length="14" nullable="true"/>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,64 @@
+{% extends "FiestaTVMainWebSiteBundle::layout.html.twig" %}
+{% block content %}
+ <div id="box">
+        <div id="header" class="header1">
+            <h6 class="blue"> </h6>
+            <h1>Collection</h1>
+        </div>
+        <div id="contentbar">
+            <div id="content">
+         <div id="block" class="center-content">
+
+             <h6>Bellow represented all movie collection of FiestaTV and sorted by Name of Movie, and aviliable for you.</h6>
+
+             {% for p_movie in product %}
+             <div id="movie" class="blue">
+                 <a href="{{ path('movie',{'id': p_movie.getMovieId() }) }}"><img src="{{  p_movie.getMovieImg() }}"></a>
+                 <a href="{{  path('movie',{'id': p_movie.getMovieId() }) }}" class="name">{{  p_movie.getMovieName() }}</a>
+                 <div class="buttonbar">
+                 <h4 id="button" class="price">{{ p_movie.getMoviePrice() }}€</h4>
+                 <h4 id="button" class="blue" onclick="createCookie({{  p_movie.getMovieId }},21)">PUT IN CART</h4>
+                 </div>
+             </div>
+             {% endfor %}
+
+
+         </div>
+
+
+                <br> Additional information: movies added after 1 January 2008 available in FullHD.
+     </div>
+        </div>
+
+     <div id="header" class="header2">
+         <h6 class="green"> </h6>
+         <h1>Most Ordered</h1>
+     </div>
+     <div id="contentbar">
+         <div id="content">
+             <div id="block" class="center-content">
+
+                 <h6>In this block we have most popular movies.</h6>
+
+                 {% for pop_movies in popular %}
+                 <div id="movie" class="green">
+                     <a href="{{ path('movie',{'id': pop_movies[0].getOrderMovie().getMovieId }) }}"><img src="{{  pop_movies[0].getOrderMovie().getMovieImg }}"></a>
+                     <a href="{{ path('movie',{'id': pop_movies[0].getOrderMovie().getMovieId }) }}" class="name">{{  pop_movies[0].getOrderMovie().getMovieName }}</a>
+                     <div id="movie-stat">{{ pop_movies['cnt'] }}</div>
+                     <div class="buttonbar">
+                         <h4 id="button" class="price">{{  pop_movies[0].getOrderMovie().getMoviePrice }}</h4>
+                         <a id="button" class="green" href="{{ path('movie',{'id': pop_movies[0].getOrderMovie().getMovieId }) }}">ABOUT</a>
+                     </div>
+                 </div>
+                 {% endfor %}
+
+
+             </div>
+
+
+             <br> Based on ordered movies.
+         </div>
+     </div>
+ </div>
+
+{%  endblock %}

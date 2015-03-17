@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Fiesta TV</title>
+    <link rel="stylesheet" href="{{ ('/fiestatv/css/main.css') }}" />
+    <script src="{{ ('http://code.jquery.com/jquery-1.11.2.min.js') }}"></script>
+    <script src="{{ ('/fiestatv/js/cookie.js') }}"></script>
+    <script src="{{ ('js/player.js') }}"></script>
+
+
+</head>
+<body onload="getNumberOfCookies()">
+<div id="bar">
+    <a href=""><img src=""></a>
+    {% if app.user %}
+    <div class="link">
+        <a href="{{ path('fos_user_profile_edit') }}" class="account">{{ app.security.getToken().getUser().getUsername() }}</a>
+        <a href="{{ path('fos_user_profile_edit') }}"><img class="avatar"  src="/web/uploads/user/profilepics/{{ app.security.getToken().getUser().getProfilePicturePath() }}"></a>
+    </div>
+    {% else %}
+{% endif %}
+
+    <a href="{{ path('index') }}" class="link">FILMS</a>
+    <li>
+    <a href="{{ path('ganre',{'ganre': 'drama' }) }}" class="link-sub">drama</a>
+    <a href="{{ path('ganre',{'ganre': 'fantasy' }) }}" class="link-sub">fantasy</a>
+    <a href="{{ path('ganre',{'ganre': 'thriller' }) }}" class="link-sub">thriller</a>
+    </li>
+    <a href="{{ path('cart') }}" class="link" onmouseover="getNumberOfCookies()">CART <div id="counter">x</div></a>
+    {% if app.user %}
+        <a href="{{ path('fos_user_security_logout') }}" class="link">LOGOUT</a>
+        {% else %}
+        <a href="{{ path('fos_user_security_login') }}" class="link">LOGIN</a>
+        <a href="{{ path('fos_user_registration_register') }}" class="link">REGISTER</a>
+    {% endif %}
+    </div>
+{% block body %}
+
+{%  endblock %}
+
+
+{% block content %}
+
+{%  endblock %}
+</body>
+</html>

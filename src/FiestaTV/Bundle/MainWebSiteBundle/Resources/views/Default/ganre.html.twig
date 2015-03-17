@@ -1,0 +1,34 @@
+{% extends "FiestaTVMainWebSiteBundle::layout.html.twig" %}
+{% block content %}
+ <div id="box">
+        <div id="header" class="header1">
+            <h6 class="blue"> </h6>
+            <h1>{{ ganre|upper }}</h1>
+        </div>
+        <div id="contentbar">
+            <div id="content">
+         <div id="block" class="center-content">
+
+             <h6>Under this text you'll see all movies from Fiesta's liabary. Ganre of your selection is: {{ ganre }}.</h6>
+
+             {% for movie in movieList %}
+             <div id="movie" class="blue">
+                 <a href="{{ path('movie',{'id': movie.getMovieId() }) }}"><img src="{{  movie.getMovieImg() }}"></a>
+                 <a href="{{  path('movie',{'id': movie.getMovieId() }) }}" class="name">{{  movie.getMovieName() }}</a>
+                 <div class="buttonbar">
+                 <h4 id="button" class="price">{{ movie.getMoviePrice() }}€</h4>
+                 <h4 id="button" class="blue" onclick="createCookie({{  movie.getMovieId }},21)">PUT IN CART</h4>
+                 </div>
+             </div>
+             {% endfor %}
+
+
+         </div>
+
+
+                <br> * Additional information: movies added after 1 January 2008 available in FullHD.
+     </div>
+        </div>
+ </div>
+
+{%  endblock %}

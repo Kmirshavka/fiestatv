@@ -1,0 +1,79 @@
+{% extends "FiestaTVMainWebSiteBundle::layout.html.twig" %}
+{% block content %}
+    <div id="box" class="register">
+        <div id="header" class="headerMovie">
+            <h6 class="red"> </h6>
+            <h1>Order</h1>
+        </div>
+        <div id="contentbar" class="register">
+            <div id="content">
+
+                {% if movie is empty %}
+                    {{ error }}
+                {% else %}
+
+
+                <div id="block" class="registerform" style="background-image: url('{{ movie.getMovieImg() }}');
+                        -webkit-box-shadow: inset 0px 0px 260px 260px rgba(29, 24, 24, 0.32);
+                        -moz-box-shadow:    inset 0px 0px 260px 260px rgba(29, 24, 24, 0.32);
+                        box-shadow:         inset 0px 0px 260px 260px rgba(29, 24, 24, 0.32);">
+                    <div id="cell"><div class="cell"> 
+
+                            <div id="movie-full">
+
+                                <br><h6> Information about your order:
+                                <div class="info" style="min-width: 180px;">
+                                    <ul><li>Movie:</li><small>{{ movie.getMovieName() }}</small></ul>
+                                    <ul><li>Price:</li><small>{{ movie.getMoviePrice() }}€</small></ul>
+                                    <ul><li>Duration:</li><small>{{ movie.getMovieDuration() }}</small></ul>
+                                    <ul><li>Ganre:</li><small>{{ movie.getMovieGanre() }}</small></ul>
+                                    <ul><li>Year:</li><small>{{ movie.getMovieYear() }}</small></ul>
+                                    <ul><li>Language:</li><small>{{ movie.getMovieLanguage() }}</small></ul>
+                                </div>
+                                    <h6 style="margin-bottom: 46px; height: 46px; border: none;"> 
+                                <div class="buttonbar">
+                                    {% if app.user %}
+                                        <form action="{{ path('ordersuccess') }}" method="POST">
+                                            <input type="hidden" name="ordermd" value="{{ movie.getMovieId() }}">
+                                            <input type="hidden" name="orderud" value="{{ app.user.id }}">
+                                            <button type="submit" id="button" class="red" style="height: 32px;">PAY</button>
+                                        </form>
+                                    {% else %}
+                                    {% endif %}
+
+                                </div></h6>
+                                </h6>
+                            </div>
+                    </div></div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener("resize", function(e) {
+            var movie = document.getElementById("movie-full");
+            var video_check = movie.offsetHeight + 110;
+            var h_window = document.body.offsetHeight;
+
+            if (h_window < video_check) {
+                movie.style.width = (document.body.offsetHeight - 110) * (16/10);
+            }
+            else {
+                movie.removeAttribute("style");
+            }
+            });
+        window.addEventListener("load", function(e) {
+            var movie = document.getElementById("movie-full");
+            var video_check = movie.offsetHeight + 110;
+            var h_window = document.body.offsetHeight;
+
+            if (h_window < video_check) {
+                movie.style.width = (document.body.offsetHeight - 110) * (16/10);
+            }
+            else {
+                movie.removeAttribute("style");
+            }
+            });
+    </script>
+{% endblock %}

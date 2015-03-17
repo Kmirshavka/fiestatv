@@ -1,0 +1,363 @@
+<?php
+
+namespace FiestaTV\Bundle\MainWebSiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Movies
+ *
+ * @ORM\Table(name="movies")
+ * @ORM\Entity
+ */
+class Movies
+{
+
+    /**
+     * @ORM\OneToMany(targetEntity="\FiestaTV\Bundle\MainWebSiteBundle\Entity\Orders", basedBy="\FiestaTV\Bundle\MainWebSiteBundle\Entity\Movies")
+     * @ORM\JoinColumn(name="movie_id"), referencedColumnName="order_movie")
+     */
+    public $movies;
+
+
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->movies = new ArrayCollection();
+    }
+
+
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="movie_name", type="string", length=255, nullable=false)
+     */
+    private $movieName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="movie_img", type="string", length=255, nullable=false)
+     */
+    private $movieImg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="movie_video", type="string", length=255, nullable=false)
+     */
+    private $movieVideo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="movie_price", type="decimal", precision=15, scale=2, nullable=false)
+     */
+    private $moviePrice;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="movie_duration", type="string", length=10, nullable=false)
+     */
+    private $movieDuration;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="movie_ganre", type="string", length=255, nullable=true)
+     */
+    private $movieGanre;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="movie_year", type="integer", nullable=false)
+     */
+    private $movieYear;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="movie_actors", type="string", length=255, nullable=false)
+     */
+    private $movieActors;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="movie_language", type="string", length=255, nullable=true)
+     */
+    private $movieLanguage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="movie_about", type="text", nullable=false)
+     */
+    private $movieAbout;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="movie_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $movieId;
+
+
+
+
+
+    /**
+     * Set movieName
+     *
+     * @param string $movieName
+     * @return Movies
+     */
+    public function setMovieName($movieName)
+    {
+        $this->movieName = $movieName;
+
+        return $this;
+    }
+
+    /**
+     * Get movieName
+     *
+     * @return string 
+     */
+    public function getMovieName()
+    {
+        return $this->movieName;
+    }
+
+    /**
+     * Set movieImg
+     *
+     * @param string $movieImg
+     * @return Movies
+     */
+    public function setMovieImg($movieImg)
+    {
+        $this->movieImg = $movieImg;
+
+        return $this;
+    }
+
+    /**
+     * Get movieImg
+     *
+     * @return string 
+     */
+    public function getMovieImg()
+    {
+        return $this->movieImg;
+    }
+
+    /**
+     * Set movieVideo
+     *
+     * @param string $movieVideo
+     * @return Movies
+     */
+    public function setMovieVideo($movieVideo)
+    {
+        $this->movieVideo = $movieVideo;
+
+        return $this;
+    }
+
+    /**
+     * Get movieVideo
+     *
+     * @return string 
+     */
+    public function getMovieVideo()
+    {
+        return $this->movieVideo;
+    }
+
+    /**
+     * Set moviePrice
+     *
+     * @param string $moviePrice
+     * @return Movies
+     */
+    public function setMoviePrice($moviePrice)
+    {
+        $this->moviePrice = $moviePrice;
+
+        return $this;
+    }
+
+    /**
+     * Get moviePrice
+     *
+     * @return string 
+     */
+    public function getMoviePrice()
+    {
+        return $this->moviePrice;
+    }
+
+    /**
+     * Set movieDuration
+     *
+     * @param string $movieDuration
+     * @return Movies
+     */
+    public function setMovieDuration($movieDuration)
+    {
+        $this->movieDuration = $movieDuration;
+
+        return $this;
+    }
+
+    /**
+     * Get movieDuration
+     *
+     * @return string 
+     */
+    public function getMovieDuration()
+    {
+        return $this->movieDuration;
+    }
+
+    /**
+     * Set movieGanre
+     *
+     * @param string $movieGanre
+     * @return Movies
+     */
+    public function setMovieGanre($movieGanre)
+    {
+        $this->movieGanre = $movieGanre;
+
+        return $this;
+    }
+
+    /**
+     * Get movieGanre
+     *
+     * @return string 
+     */
+    public function getMovieGanre()
+    {
+        return $this->movieGanre;
+    }
+
+    /**
+     * Set movieYear
+     *
+     * @param integer $movieYear
+     * @return Movies
+     */
+    public function setMovieYear($movieYear)
+    {
+        $this->movieYear = $movieYear;
+
+        return $this;
+    }
+
+    /**
+     * Get movieYear
+     *
+     * @return integer 
+     */
+    public function getMovieYear()
+    {
+        return $this->movieYear;
+    }
+
+    /**
+     * Set movieActors
+     *
+     * @param string $movieActors
+     * @return Movies
+     */
+    public function setMovieActors($movieActors)
+    {
+        $this->movieActors = $movieActors;
+
+        return $this;
+    }
+
+    /**
+     * Get movieActors
+     *
+     * @return string 
+     */
+    public function getMovieActors()
+    {
+        return $this->movieActors;
+    }
+
+    /**
+     * Set movieLanguage
+     *
+     * @param string $movieLanguage
+     * @return Movies
+     */
+    public function setMovieLanguage($movieLanguage)
+    {
+        $this->movieLanguage = $movieLanguage;
+
+        return $this;
+    }
+
+    /**
+     * Get movieLanguage
+     *
+     * @return string 
+     */
+    public function getMovieLanguage()
+    {
+        return $this->movieLanguage;
+    }
+
+    /**
+     * Set movieAbout
+     *
+     * @param string $movieAbout
+     * @return Movies
+     */
+    public function setMovieAbout($movieAbout)
+    {
+        $this->movieAbout = $movieAbout;
+
+        return $this;
+    }
+
+    /**
+     * Get movieAbout
+     *
+     * @return string 
+     */
+    public function getMovieAbout()
+    {
+        return $this->movieAbout;
+    }
+
+    /**
+     * Get movieId
+     *
+     * @return integer 
+     */
+    public function getMovieId()
+    {
+        return $this->movieId;
+    }
+
+
+
+
+}

@@ -1,0 +1,148 @@
+<?php
+
+namespace FiestaTV\Bundle\MainWebSiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Reviews
+ *
+ * @ORM\Table(name="reviews", indexes={@ORM\Index(name="fk_reviews_users1_idx", columns={"review_user"}), @ORM\Index(name="fk_reviews_movies1_idx", columns={"review_movie"})})
+ * @ORM\Entity
+ */
+class Reviews
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="review_text", type="text", nullable=false)
+     */
+    private $reviewText;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="review_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $reviewId;
+
+    /**
+     * @var \FiestaTV\Bundle\MainWebSiteBundle\Entity\Users
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="FiestaTV\Bundle\MainWebSiteBundle\Entity\Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="review_user", referencedColumnName="user_id")
+     * })
+     */
+    private $reviewUser;
+
+    /**
+     * @var \FiestaTV\Bundle\MainWebSiteBundle\Entity\Movies
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="FiestaTV\Bundle\MainWebSiteBundle\Entity\Movies")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="review_movie", referencedColumnName="movie_id")
+     * })
+     */
+    private $reviewMovie;
+
+
+
+    /**
+     * Set reviewText
+     *
+     * @param string $reviewText
+     * @return Reviews
+     */
+    public function setReviewText($reviewText)
+    {
+        $this->reviewText = $reviewText;
+
+        return $this;
+    }
+
+    /**
+     * Get reviewText
+     *
+     * @return string 
+     */
+    public function getReviewText()
+    {
+        return $this->reviewText;
+    }
+
+    /**
+     * Set reviewId
+     *
+     * @param integer $reviewId
+     * @return Reviews
+     */
+    public function setReviewId($reviewId)
+    {
+        $this->reviewId = $reviewId;
+
+        return $this;
+    }
+
+    /**
+     * Get reviewId
+     *
+     * @return integer 
+     */
+    public function getReviewId()
+    {
+        return $this->reviewId;
+    }
+
+    /**
+     * Set reviewUser
+     *
+     * @param \FiestaTV\Bundle\MainWebSiteBundle\Entity\Users $reviewUser
+     * @return Reviews
+     */
+    public function setReviewUser(\FiestaTV\Bundle\MainWebSiteBundle\Entity\Users $reviewUser)
+    {
+        $this->reviewUser = $reviewUser;
+
+        return $this;
+    }
+
+    /**
+     * Get reviewUser
+     *
+     * @return \FiestaTV\Bundle\MainWebSiteBundle\Entity\Users 
+     */
+    public function getReviewUser()
+    {
+        return $this->reviewUser;
+    }
+
+    /**
+     * Set reviewMovie
+     *
+     * @param \FiestaTV\Bundle\MainWebSiteBundle\Entity\Movies $reviewMovie
+     * @return Reviews
+     */
+    public function setReviewMovie(\FiestaTV\Bundle\MainWebSiteBundle\Entity\Movies $reviewMovie)
+    {
+        $this->reviewMovie = $reviewMovie;
+
+        return $this;
+    }
+
+    /**
+     * Get reviewMovie
+     *
+     * @return \FiestaTV\Bundle\MainWebSiteBundle\Entity\Movies 
+     */
+    public function getReviewMovie()
+    {
+        return $this->reviewMovie;
+    }
+}

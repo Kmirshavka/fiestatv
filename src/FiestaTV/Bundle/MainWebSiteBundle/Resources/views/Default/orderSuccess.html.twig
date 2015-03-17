@@ -1,0 +1,20 @@
+{% extends "FiestaTVMainWebSiteBundle::layout.html.twig" %}
+{% block content %}
+    <div id="box" class="register">
+        <div id="header" class="headerMovie">
+            <h6 class="red"> </h6>
+            <h1>Order</h1>
+        </div>
+        <div id="contentbar" class="register">
+            <div id="content">
+
+
+                    {{ error }}
+                <script>
+                    paidCookie('{{ movie }}','{{ path('index') }}');
+                </script>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

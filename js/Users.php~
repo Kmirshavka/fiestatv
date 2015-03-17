@@ -1,0 +1,185 @@
+<?php
+
+namespace FiestaTV\Bundle\MainWebSiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Users
+ *
+ * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="user_id_UNIQUE", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class Users
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_password", type="string", length=16, nullable=false)
+     */
+    private $userPassword;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_email", type="string", length=32, nullable=true)
+     */
+    private $userEmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_name", type="string", length=32, nullable=true)
+     */
+    private $userName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_surname", type="string", length=32, nullable=true)
+     */
+    private $userSurname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_phone", type="string", length=14, nullable=true)
+     */
+    private $userPhone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_id", type="string", length=16)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $userId;
+
+
+
+    /**
+     * Set userPassword
+     *
+     * @param string $userPassword
+     * @return Users
+     */
+    public function setUserPassword($userPassword)
+    {
+        $this->userPassword = $userPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get userPassword
+     *
+     * @return string 
+     */
+    public function getUserPassword()
+    {
+        return $this->userPassword;
+    }
+
+    /**
+     * Set userEmail
+     *
+     * @param string $userEmail
+     * @return Users
+     */
+    public function setUserEmail($userEmail)
+    {
+        $this->userEmail = $userEmail;
+
+        return $this;
+    }
+
+    /**
+     * Get userEmail
+     *
+     * @return string 
+     */
+    public function getUserEmail()
+    {
+        return $this->userEmail;
+    }
+
+    /**
+     * Set userName
+     *
+     * @param string $userName
+     * @return Users
+     */
+    public function setUserName($userName)
+    {
+        $this->userName = $userName;
+
+        return $this;
+    }
+
+    /**
+     * Get userName
+     *
+     * @return string 
+     */
+    public function getUserName()
+    {
+        return $this->userName;
+    }
+
+    /**
+     * Set userSurname
+     *
+     * @param string $userSurname
+     * @return Users
+     */
+    public function setUserSurname($userSurname)
+    {
+        $this->userSurname = $userSurname;
+
+        return $this;
+    }
+
+    /**
+     * Get userSurname
+     *
+     * @return string 
+     */
+    public function getUserSurname()
+    {
+        return $this->userSurname;
+    }
+
+    /**
+     * Set userPhone
+     *
+     * @param string $userPhone
+     * @return Users
+     */
+    public function setUserPhone($userPhone)
+    {
+        $this->userPhone = $userPhone;
+
+        return $this;
+    }
+
+    /**
+     * Get userPhone
+     *
+     * @return string 
+     */
+    public function getUserPhone()
+    {
+        return $this->userPhone;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return string 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+}

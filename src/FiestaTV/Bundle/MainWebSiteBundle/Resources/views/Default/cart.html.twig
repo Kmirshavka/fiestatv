@@ -1,0 +1,97 @@
+{% extends "FiestaTVMainWebSiteBundle::layout.html.twig" %}
+{% block content %}
+    <div id="box">
+        <div id="header" class="header1">
+            <h6 class="blue"> </h6>
+            <h1>Movies in Cart</h1>
+        </div>
+        <div id="contentbar">
+            <div id="content">
+                <div id="block" class="center-content">
+
+                    <h6>List of Movies in your Cart.</h6>
+
+                    {% for moviein in movieList %}
+                    <div class="movie2">
+                        <div class="hoverinfo" id="red"><div id="div-table" class="toggle"><p>
+                        {% if app.user %}<a href="{{ path('order',{'id': moviein['movie'].getMovieId() }) }}">ORDER<br><small>{{ moviein['movie'].getMoviePrice() }}€</small></a>
+                        {% else %}<a href="#" onclick="alert('Please login first or Register! Login or registration link you will find at main menu. Do not worry all your shopping list are in save.');">ORDER<br><small>{{ moviein['movie'].getMoviePrice() }}€</small></a>
+                        {% endif %}</p></div></div>
+                        <img src="{{ moviein['movie'].getMovieImg() }}">
+                        <div id="div-table" class="name"><p>
+                        <a href="{{ path('movie',{'id': moviein['movie'].getMovieId() }) }}" class="name">{{ moviein['movie'].getMovieName() }}</a></p></div>
+                        <div id="line" class="red"> </div>
+                        <div id="movie-remove" onclick="eraseCookie('{{ moviein['cookiesname'] }}')"  style="cursor: pointer;">x</div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+
+
+                {% if app.user %}<br> *Important information: after your payment you will be able for watching ordered movie on while FiestaTV.
+                {% else %}<br> *Important information: To be able to watch movies, you need be an registered user.
+                {% endif %}
+            </div>
+        </div>
+
+        {% if app.user %}
+        <div id="header" class="header2">
+            <h6 class="green"> </h6>
+            <h1>Ordered Movies</h1>
+        </div>
+        <div id="contentbar">
+            <div id="content">
+                <div id="block" class="center-content">
+
+                    <h6>Just play yours ordered movies:</h6>
+
+                    {% for moviein in ordered %}
+                        <div class="movie2">
+                            <div class="hoverinfo" id="red"><div id="div-table" class="toggle"><p>
+                                        {% if app.user %}<a href="{{ path('movie',{'id': moviein.getOrderMovie.getMovieId() }) }}">OPEN<br><small>movie</small></a>
+                                        {% else %}<a href="#" onclick="alert('Please login first or Register! Login or registration link you will find at main menu. Do not worry all your shopping list are in save.');">ORDER<br><small>{{ moviein['movie'].getMoviePrice() }}€</small></a>
+                                        {% endif %}</p></div></div>
+                            <img src="{{ moviein.getOrderMovie.getMovieImg() }}">
+                            <div id="div-table" class="name"><p>
+                                    <a href="{{ path('movie',{'id': moviein.getOrderMovie.getMovieId() }) }}" class="name">{{ moviein.getOrderMovie.getMovieName() }}</a></p></div>
+                            <div id="line" class="red"> </div>
+                            <div id="movie-remove"></div>
+                        </div>
+                    {% endfor %}
+
+
+                    <h6>You have ordered and didn't paid yet for next movies:</h6>
+
+                    {% for moviein in preordered %}
+                        <div class="movie2">
+                            <div class="hoverinfo" id="red"><div id="div-table" class="toggle"><p>
+                                        {% if app.user %}<a href="{{ path('order',{'id': moviein.getOrderMovie.getMovieId() }) }}">FINISH<br><small>payment</small></a>
+                                        {% else %}<a href="#" onclick="alert('Please login first or Register! Login or registration link you will find at main menu. Do not worry all your shopping list are in save.');">ORDER<br><small>{{ moviein['movie'].getMoviePrice() }}€</small></a>
+                                        {% endif %}</p></div></div>
+                            <img src="{{ moviein.getOrderMovie.getMovieImg() }}">
+                            <div id="div-table" class="name"><p>
+                                    <a href="{{ path('movie',{'id': moviein.getOrderMovie.getMovieId() }) }}" class="name">{{ moviein.getOrderMovie.getMovieName() }}</a></p></div>
+                            <div id="line" class="red"> </div>
+                            <div id="movie-remove"></div>
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+
+            </div>
+        </div>
+
+        {% else %}
+        {% endif %}
+    </div>
+
+    <script>
+        $(".movie2").hover(function() {
+            $(this).find("div.hoverinfo").toggle(400);
+        });
+    </script>
+
+
+{%  endblock %}

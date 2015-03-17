@@ -1,0 +1,36 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+    <div id="box" class="register">
+        <div id="header" class="headerLogin">
+            <h6 class="orange"> </h6>
+            <h1>Login</h1>
+        </div>
+        <div id="contentbar" class="register">
+            <div id="content">
+                <div id="block" class="registerform">
+                    <div id="cell"><div class="cell"> 
+                            <form id="login" action="{{ path("fos_user_security_check") }}" method="post" class="fos_user_registration_register">
+                                <h6>Fill yours identification datas into fields below:</h6>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+                                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="USERNAME"><br>
+                                <input type="password" id="password" name="_password" required="required" placeholder="PASSWORD">
+                                <label><input type="checkbox" id="remember_me" name="_remember_me" value="on" ><span class="remember_me">Keep me login</span></label>
+                                <h6> </h6>
+                                <input type="hidden" name="_target_path" value="cart" />
+                                <button type="submit" id="_submit" name="_submit" class="login">LOGIN</button>
+                            </form>
+                        </div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock fos_user_content %}

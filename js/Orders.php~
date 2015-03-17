@@ -1,0 +1,114 @@
+<?php
+
+namespace FiestaTV\Bundle\MainWebSiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Orders
+ *
+ * @ORM\Table(name="orders")
+ * @ORM\Entity
+ */
+class Orders
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_status", type="string", length=45, nullable=true)
+     */
+    private $orderStatus;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="order_expired", type="date", nullable=true)
+     */
+    private $orderExpired;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="order_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="Auto")
+     */
+    private $orderId;
+
+
+    /**
+     * Set orderStatus
+     *
+     * @param string $orderStatus
+     * @return Orders
+     */
+    public function setOrderStatus($orderStatus)
+    {
+        $this->orderStatus = $orderStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get orderStatus
+     *
+     * @return string 
+     */
+    public function getOrderStatus()
+    {
+        return $this->orderStatus;
+    }
+
+    /**
+     * Set orderExpired
+     *
+     * @param \DateTime $orderExpired
+     * @return Orders
+     */
+    public function setOrderExpired($orderExpired)
+    {
+        $this->orderExpired = $orderExpired;
+
+        return $this;
+    }
+
+    /**
+     * Get orderExpired
+     *
+     * @return \DateTime 
+     */
+    public function getOrderExpired()
+    {
+        return $this->orderExpired;
+    }
+
+    /**
+     * Set orderId
+     *
+     * @param integer $orderId
+     * @return Orders
+     */
+    public function setOrderId($orderId)
+    {
+        $this->orderId = $orderId;
+
+        return $this;
+    }
+
+    /**
+     * Get orderId
+     *
+     * @return integer
+     */
+    public function getOrderId()
+    {
+        return $this->orderId;
+    }
+
+
+
+
+
+
+
+}

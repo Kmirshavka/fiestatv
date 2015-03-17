@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="FiestaTV\Bundle\MainWebSiteBundle\Entity\Orders" table="orders">
+    <indexes>
+      <index name="IDX_E52FFDEE2996BFED" columns="order_login"/>
+      <index name="IDX_E52FFDEE9EC08692" columns="order_movie"/>
+    </indexes>
+    <id name="orderId" type="integer" column="order_id"/>
+    <id name="orderLogin" association-key="true"/>
+    <id name="orderMovie" association-key="true"/>
+    <field name="orderStatus" type="string" column="order_status" length="45" nullable="true"/>
+    <field name="orderExpired" type="date" column="order_expired" nullable="true"/>
+    <one-to-one field="orderMovie" target-entity="Movies">
+      <join-columns>
+        <join-column name="order_movie" referenced-column-name="movie_id"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="orderLogin" target-entity="\FiestaTV\Bundle\UserBundle\Entity\FosUser">
+      <join-columns>
+        <join-column name="order_login" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

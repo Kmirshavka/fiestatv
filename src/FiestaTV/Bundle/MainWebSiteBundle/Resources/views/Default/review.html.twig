@@ -1,0 +1,24 @@
+{% block content %}
+    <html>
+    <head><title>Add review</title>
+        <link rel="stylesheet" href="{{ ('/css/main.css') }}" />
+    </head>
+    <body>
+    {% if message is empty %}
+    <div style="color: rgba(169,0,0,1); font-size: 14px; font-family: 'font-text';">hmmm u doing bad things...</div>
+    {% else %}
+        {% if doing == 'added' %}
+        <div style="color: white; font-size: 14px; font-family: 'font-text';">{{ message }}</div> {% else %}
+        <form action="{{ path('review') }}" method="get" width="100%">
+            <input type="hidden" name="doing" value="add">
+            <input type="hidden" name="md" value="{{ md }}">
+            <input type="hidden" name="ud" value="{{ ud }}">
+
+            <textarea placeholder="PUT YOUR REVIEW HERE" style="resize: none; overflow-y: hidden; width: 100%; height: 60px;" required="1" rows="7" name="text" maxlength="10000"></textarea><br>
+            <button id="button" style="height: 32px;" type="submit" class="red">ADD REVIEW</button>
+            </form>
+        {% endif %}
+        {% endif %}
+    </body>
+    </html>
+{% endblock %}

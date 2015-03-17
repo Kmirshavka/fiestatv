@@ -1,0 +1,100 @@
+{% extends "FiestaTVMainWebSiteBundle::layout.html.twig" %}
+{% block content %}
+    <div id="box" class="register">
+        <div id="header" class="headerMovie">
+            <h6 class="red"> </h6>
+            <h1>{{ movie.getMovieName() }}</h1>
+        </div>
+        <div id="contentbar" class="register">
+            <div id="content">
+                <div id="block" class="registerform">
+                    <div id="cell"><div class="cell"> 
+
+                            <div id="movie-full">
+                                <img id="cover" src="{{ movie.getMovieImg() }}">
+                                <div id="movie-stat"></div>
+                                <div class="buttonbar">
+                                    {% if app.user %}
+                                    {% if play %}
+                                        {% else %}
+                                        <h4 id="button" class="price">{{ movie.getMoviePrice() }}€</h4>
+                                        {% endif %}
+                                    <h4 id="button" class="red">ADD REVIEW</h4>
+                                    {% if play %}
+                                    {% else %}
+                                        <h4 id="button" class="red" onclick="createCookie({{  movie.getMovieId }},21)">PUT IN CART</h4>
+                                        {% endif %}
+                                    {% if play %} <button id="button" class="red" style="height: 32px;">WATCH ONLINE</button>
+                                    {% else %} {% endif %}
+
+                                    {% else %}
+                                        <h4 id="button" class="price">{{ movie.getMoviePrice() }}€</h4>
+                                        <h4 id="button" class="red" onclick="createCookie({{  movie.getMovieId }},21)">PUT IN CART</h4>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                            <h6> Information about movie: </h6>
+                            <div class="info">
+                            <ul></ul><li>Duration:</li><small>{{ movie.getMovieDuration() }}</small></ul>
+                            <ul><li>Ganre:</li><small>{{ movie.getMovieGanre() }}</small></ul>
+                            <ul><li>Year:</li><small>{{ movie.getMovieYear() }}</small></ul>
+                            <ul><li>Actors:</li><small>{{ movie.getMovieActors() }}</small></ul>
+                            <ul><li>Language:</li><small>{{ movie.getMovieLanguage() }}</small></ul>
+                            </div>
+
+                            <blockquote>{{ movie.getMovieAbout() }}</blockquote>
+                            <div id="review"> </div>
+                        </div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener("resize", function(e) {
+            var movie = document.getElementById("movie-full");
+            var video_check = movie.offsetHeight + 110;
+            var h_window = document.body.offsetHeight;
+
+            if (h_window < video_check) {
+                movie.style.width = (document.body.offsetHeight - 110) * (16/10);
+            }
+            else {
+                movie.removeAttribute("style");
+            }
+            });
+        window.addEventListener("load", function(e) {
+            var movie = document.getElementById("movie-full");
+            var video_check = movie.offsetHeight + 110;
+            var h_window = document.body.offsetHeight;
+
+            if (h_window < video_check) {
+                movie.style.width = (document.body.offsetHeight - 110) * (16/10);
+            }
+            else {
+                movie.removeAttribute("style");
+            }
+            });
+    </script>
+    {% if play %}
+        <script>
+            $( "button#button" ).click(function() {
+                $( "#cover" ).replaceWith( "<div id='player' class='jquery-youtube-tubeplayer'>" + "<iframe id='youtube' frameborder='0' allowfullscreen='1' width='100%' src='{{ movie.getMovieVideo() }}'></iframe>" + "</div>" );
+                vph = $(window).height()-110;
+                $("#youtube").css({'height': vph + 'px'});
+                $( this ).hide();
+            });
+            $( "h4#button" ).click(function() {
+                $( "#review" ).replaceWith( "<iframe id='review' frameborder='0' scrolling='0' allowfullscreen='1' height='120px' src='{{ path('review') }}?doing=open&md={{ movie.getMovieId() }}&ud={{ app.user.id }}'></iframe>");
+                $('html,body').animate({
+                                scrollTop: $("#review").offset().top},
+                            'slow');
+                $("h4#button").text('NEW REVIEW');
+            });
+
+            window.onresize = function(event) {
+                vph = $("#youtube").width()*(10/16);
+                $('#youtube').css({'height': vph + 'px'});
+            }
+        </script> {% else %} {% endif %}
+{% endblock %}

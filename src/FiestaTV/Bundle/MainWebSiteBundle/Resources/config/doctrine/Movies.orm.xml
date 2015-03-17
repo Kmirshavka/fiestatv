@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="FiestaTV\Bundle\MainWebSiteBundle\Entity\Movies" table="movies">
+    <id name="movieId" type="integer" column="movie_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="movieName" type="string" column="movie_name" length="255" nullable="false"/>
+    <field name="movieImg" type="string" column="movie_img" length="255" nullable="false"/>
+    <field name="movieVideo" type="string" column="movie_video" length="255" nullable="false"/>
+    <field name="moviePrice" type="decimal" column="movie_price" precision="15" scale="2" nullable="false"/>
+    <field name="movieDuration" type="string" column="movie_duration" length="10" nullable="false"/>
+    <field name="movieGanre" type="string" column="movie_ganre" length="255" nullable="true"/>
+    <field name="movieYear" type="integer" column="movie_year" nullable="false"/>
+    <field name="movieActors" type="string" column="movie_actors" length="255" nullable="false"/>
+    <field name="movieLanguage" type="string" column="movie_language" length="255" nullable="true"/>
+    <field name="movieAbout" type="text" column="movie_about" nullable="false"/>
+  </entity>
+</doctrine-mapping>
